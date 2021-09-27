@@ -126,6 +126,7 @@ class MergeSort {
 
     // Driver code
     public static void main(String args[]) throws IOException {
+	threads = Integer.parseInt(args[0]);
         FileInputStream fis = new FileInputStream("array.bin");
         DataInputStream dis = new DataInputStream(fis);
         StringBuilder str = new StringBuilder();
@@ -148,17 +149,17 @@ class MergeSort {
 
         }
 
-        System.out.println("Given Array");
-        printArray(arr);
 
         MergeSort ob = new MergeSort();
-        ob.sort(arr, 0, arr.length - 1);
 
-        System.out.println("\nSorted array");
-        printArray(arr);
+	long time = System.currentTimeMillis();
+        ob.sort(arr, 0, arr.length - 1);
+	time = System.currentTimeMillis() - time;
+
+	System.out.println("Time spent for standard merge sort: " + time + "ms");
+
 
         MergeSort.threadsSorting(arr);
 
-        printArray(arr);
     }
 }

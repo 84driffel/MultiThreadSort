@@ -8,15 +8,16 @@ import java.util.Random;
 public class DatasetGenerator {
 
     public static void main(String[] args) throws IOException {
-        int N = 200;
+        int N = Integer.parseInt(args[0]);
+
 
         long batch[] = new long[N];
-        Random r = new Random(1234);
+        Random r = new Random(System.currentTimeMillis());
         for (int i = 0; i < batch.length; i++) {
             batch[i] = r.nextLong() % 1000;
         }
 
-        System.out.println(batch);
+        System.out.println("Created array with " + batch.length + " entries");
 
         FileOutputStream fos = new FileOutputStream("array.bin");
         DataOutputStream dos = new DataOutputStream(fos);
