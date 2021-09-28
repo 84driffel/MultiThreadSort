@@ -29,7 +29,13 @@ class MergeSort {
         for (int i = 0; i < length; i += maxlim) {
             int l = i;
             int remain = (length) - i;
-            int r = remain < maxlim ? i + (remain - 1) : i + (maxlim - 1);
+            int r;
+	    if(remain < maxlim){
+		    r = i + (remain - 1);   
+	    }
+	    else{
+		    r =  i + (maxlim - 1);
+	    }
             final SortingThreads t = new SortingThreads(array, l, r);
             threads.add(t);
         }
@@ -40,9 +46,13 @@ class MergeSort {
             }
         }
         for (int i = 0; i < length; i += maxlim) {
-            int mid = i == 0 ? 0 : i - 1;
+            int mid;
+	    if(i == 0){ mid = 0;}
+	    else{ mid = i-1;}
             int remain = (length) - i;
-            int end = remain < maxlim ? i + (remain - 1) : i + (maxlim - 1);
+            int end;
+	    if (remain < maxlim){ end = i + (remain - 1);}
+	    else{                 end = i + (maxlim - 1);}
             merge(array, 0, mid, end);
         }
         time = System.currentTimeMillis() - time;
